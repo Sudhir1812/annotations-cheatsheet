@@ -20,10 +20,12 @@ import java.util.Optional;
 @RestController
 @RequestMapping("/students")
 @PropertySource("classpath:custom.properties")
-@Scope("prototype")
+//@Scope("singleton") //only one time single object will be created
+@Scope("prototype") // multiple object will be created on request
 public class StudentController {
 
     @Autowired
+    //@Qualifier("studentServiceImpl")
     private StudentService studentService;
 
     @Autowired
@@ -38,15 +40,18 @@ public class StudentController {
     private String host;
     @Value("${mail.port}")
     private String port;
+
     @Value("${message}")
     private String message;
 
     @Autowired
     private MailProps mailProps;
 
-    public StudentController() {
-        System.out.println("controller object created ....");
+    public StudentController(){
+        System.out.println("controller object created...");
     }
+
+
 
     @PostMapping("/save")
     public ResponseEntity<Student> addStudent(@RequestBody Student student) {
@@ -66,6 +71,9 @@ public class StudentController {
 
     @GetMapping("/all")
     public ResponseEntity<List<Student>> getStudents() {
+        //System.out.println("Mail props load using @Value :" +from+" :"+host+" : "+port);
+        //System.out.println("new value : "+ message);
+        //testBean.method();
         System.out.println("mail properties : "+ mailProps);
         return ResponseEntity.ok(studentService.getStudents());
     }

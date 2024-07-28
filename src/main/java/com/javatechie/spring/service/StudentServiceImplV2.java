@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
+//@Primary
 public class StudentServiceImplV2 implements StudentService{
 
     @Override

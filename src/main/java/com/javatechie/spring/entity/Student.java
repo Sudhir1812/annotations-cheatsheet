@@ -19,10 +19,13 @@ public class Student {
     @Id
     @Column(name = "STUDENT_ID")
     private int id;
+
     @Column(name = "STUDENT_NAME")
     private String name;
+
     @Column(name = "ROLL_NO")
     private int rollNo;
+
     @Column(name = "DEPT")
     private String dept;
 

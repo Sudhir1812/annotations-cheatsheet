@@ -4,21 +4,23 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
-@Table(name = "STUDENT_TBL")
+@Table(name = "COURSE_TBL")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Courcse {
+public class Course {
+
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
+    @Column(name = "COURSE_NAME")
     private String courseName;
 
+    @ManyToOne
+    @JoinColumn(name = "STUDENT_ID")
     private Student student;
 }
